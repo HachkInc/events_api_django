@@ -21,23 +21,17 @@ from django.db.models import Q
 
 
 class Events(models.Model):
-    # id = models.AutoField(primary_key = True)
-    title = models.CharField(max_length=40)
+    title = models.CharField(max_length=150)
     login = models.CharField(max_length=20)
     password = models.CharField(max_length=40)
-    address = models.CharField(max_length=100)
-    # qr_code = models.CharField(max_length=50)
+    address = models.CharField(max_length=150)
     time_start = models.DateTimeField()
     time_end = models.DateTimeField()
     max_guest_count = models.IntegerField()
-    description = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.title
+    description = models.CharField(max_length=1000)
 
 
 class Tickets(models.Model):
     event_id = models.ForeignKey(Events, on_delete=models.CASCADE)
-    # event_id = models.IntegerField()
     # client_id = models.ForeignKey(Client, on_delete=models.CASCADE)
     is_inside = models.BooleanField()

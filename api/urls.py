@@ -7,7 +7,6 @@ router = routers.DefaultRouter()
 # router.register(r'client', views.UserViewSet)
 router.register(r'events', views.EventsViewSet)
 router.register(r'tickets', views.TicketsViewSet)
-# router.register(r'events/{pk}', views.EventsViewSet)
 
 
 # Wire up our API using automatic URL routing.

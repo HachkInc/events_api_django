@@ -18,7 +18,7 @@ class EventFilterSet(filters.FilterSet):
     class Meta:
         model = Events
         fields = {
-            'title': ['exact'],    #Только точные совпадения
+            'title': ['icontains'],
         }
 
 
@@ -27,7 +27,6 @@ class EventsViewSet(viewsets.ModelViewSet):
     serializer_class = EventsSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = EventFilterSet
-    # .filter(title__startswith='')   на всякий чтобы искать по началу
 
 
 class TicketsViewSet(viewsets.ModelViewSet):
