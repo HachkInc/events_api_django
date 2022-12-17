@@ -2,6 +2,12 @@ import django_filters
 from django.db import models
 from django_filters import rest_framework as filters
 from django.db.models import Q
+from django.contrib.auth.models import (
+    BaseUserManager, AbstractBaseUser
+)
+
+# class User(AbstractBaseUser):
+
 
 
 # from django_filters import filters
