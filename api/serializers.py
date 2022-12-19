@@ -5,30 +5,31 @@ from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 
 
-# class UserSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ('id', 'name', 'surname', 'age', 'email','is_staff' , 'is_admin', 'password',)
-
-
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "email", "password"]
+        fields = ["id", "first_name", "last_name", "is_superuser", "is_staff", "email", "password"]
 
 
 class RegisterSerializer(serializers.ModelSerializer):
+    first_name = serializers.CharField(required = False)
+    last_name = serializers.CharField(required = False)
+    # age = serializers.IntegerField(required = False)
+    # qr_code = serializers.CharField(required = False)
+    is_superuser = serializers.BooleanField(required=False)
+    is_staff = serializers.BooleanField(required= False)
     email = serializers.EmailField(
         required=True,
         validators=[UniqueValidator(queryset=User.objects.all())]
     )
-    # password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
+
     password = serializers.CharField(write_only=True, required=True)
-    # password2 = serializers.CharField(write_only=True, required=True)
+
+
 
     class Meta:
         model = User
-        fields = ('email', 'password')
+        fields = ('first_name', 'last_name', 'is_superuser', 'is_staff', 'email', 'password')
 
     # def validate(self, attrs):
     #     if attrs['password'] != attrs['password2']:
@@ -39,7 +40,9 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create(
             username=validated_data['email'],
+            email=validated_data['email'],
         )
+
         user.set_password(validated_data['password'])
         user.save()
         return user
@@ -55,4 +58,4 @@ class EventsSerializer(serializers.ModelSerializer):
 class TicketsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tickets
-        fields = ('id', 'event_id', 'is_inside')
+        fields = ('id', 'event_id', 'user_id', 'is_inside')

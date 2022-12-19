@@ -1,19 +1,11 @@
-from django.http import Http404, JsonResponse
-from django.shortcuts import render
-
-# Create your views here.
+from django.http import Http404
 from rest_framework import viewsets, status
 from django_filters import rest_framework as filters
 from .serializers import EventsSerializer, TicketsSerializer
 from .models import Events, Tickets
-from django.contrib.auth import authenticate, login
-
 from rest_framework.permissions import AllowAny
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import UserSerializer, RegisterSerializer
-from django.contrib.auth.models import User
-from rest_framework.authentication import TokenAuthentication
 from rest_framework import generics
 from django.contrib.auth.models import User
 
@@ -59,6 +51,7 @@ class UserDetail(generics.RetrieveAPIView):
     #         serializer.save()
     #         return JsonResponse(201, data=serializer.data)
     #     return JsonResponse(404, data="Wrong parameters. Not found")
+
 
 
 # Class based view to register user
