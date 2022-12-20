@@ -1,8 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser, User
+    BaseUserManager, AbstractBaseUser, User, AbstractUser
 
 )
+
+# class User(AbstractUser):
+#     first_name = models.CharField(max_length=150)
+#     last_name = models.CharField(max_length=150)
+#     # age = models.IntegerField(required = False)
+#     # qr_code = models.CharField(required = False)
+#     is_superuser = models.BooleanField()
+#     is_staff = models.BooleanField()
+#     email = models.EmailField()
+#     password = models.CharField(max_length=150)
+
 
 class Events(models.Model):
     title = models.CharField(max_length=150)

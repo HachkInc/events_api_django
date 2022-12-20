@@ -9,6 +9,7 @@ from rest_framework_simplejwt import views as jwt_views
 router = routers.DefaultRouter()
 router.register(r'events', views.EventsViewSet)
 router.register(r'tickets', views.TicketsViewSet)
+router.register(r'users', views.UserDetailAPIView)
 
 
 # Wire up our API using automatic URL routing.
@@ -18,6 +19,6 @@ urlpatterns = [
     path('auth/register', views.RegisterUserAPIView.as_view()),
     path('auth/login', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/refresh', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
-    path('users/', views.UserList.as_view()),
-    path('users/<int:pk>/', views.UserDetail.as_view()),
+    # path('users/', views.UserList.as_view()),
+    # path('users/<int:pk>/', views.UserDetail.as_view()),
 ]

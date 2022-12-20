@@ -8,7 +8,20 @@ from django.contrib.auth.password_validation import validate_password
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "first_name", "last_name", "is_superuser", "is_staff", "email", "password"]
+        fields = ('id', 'first_name', 'last_name', 'is_superuser', 'is_staff', 'email', 'password')
+
+
+class EventsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Events
+        fields = ('id', 'title', 'login', 'password', 'address', 'time_start', 'time_end', 'max_guest_count',
+                  'description')
+
+
+class TicketsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tickets
+        fields = ('id', 'event_id', 'user_id', 'is_inside')
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -22,10 +35,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         required=True,
         validators=[UniqueValidator(queryset=User.objects.all())]
     )
-
     password = serializers.CharField(write_only=True, required=True)
-
-
 
     class Meta:
         model = User
@@ -46,16 +56,3 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
-
-
-class EventsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Events
-        fields = ('id', 'title', 'login', 'password', 'address', 'time_start', 'time_end', 'max_guest_count',
-                  'description')
-
-
-class TicketsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Tickets
-        fields = ('id', 'event_id', 'user_id', 'is_inside')
