@@ -7,11 +7,11 @@ from django.contrib.auth.models import (
 
 class User(AbstractUser):
     id = models.CharField(max_length=6, primary_key=True)
-    first_name = models.CharField(max_length=150, blank=True)
-    last_name = models.CharField(max_length=150, blank=True)
-    age = models.CharField(max_length=3, blank=True)
-    is_superuser = models.BooleanField(blank=True)
-    is_staff = models.BooleanField(blank=True)
+    first_name = models.CharField(max_length=150, null=True)
+    last_name = models.CharField(max_length=150, null=True)
+    age = models.CharField(max_length=3, null=True)
+    is_superuser = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
     email = models.EmailField()
     password = models.CharField(max_length=150)
 
@@ -30,7 +30,6 @@ class Events(models.Model):
 
 class Tickets(models.Model):
     id = models.CharField(max_length=6, primary_key=True)
-    # id = models.SlugField(primary_key=True, unique=True, editable=False, blank=True)
     event_id = models.ForeignKey(Events, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, default="", on_delete=models.CASCADE)
     is_inside = models.BooleanField()
