@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from .serializers import UserSerializer, RegisterSerializer
 from rest_framework import generics
 from django.contrib.auth.models import User
+from .models import CustomUser
 # from snippets.serializers import UserSerializer
 
 
@@ -52,7 +53,7 @@ class RegisterUserAPIView(generics.CreateAPIView):
 
 
 class UserList(generics.ListAPIView):
-    queryset = User.objects.all()
+    queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
 
 
@@ -77,5 +78,5 @@ class TicketsViewSet(viewsets.ModelViewSet):
 
 
 class UserDetailAPIView(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = CustomUser.objects.all()
     serializer_class = UserSerializer

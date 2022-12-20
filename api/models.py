@@ -4,11 +4,14 @@ from django.contrib.auth.models import (
 
 )
 
-# class User(AbstractUser):
-#     first_name = models.CharField(max_length=150)
-#     last_name = models.CharField(max_length=150)
-#     # age = models.IntegerField(required = False)
-#     # qr_code = models.CharField(required = False)
+
+class CustomUser(AbstractUser):
+    #     first_name = models.CharField(max_length=150)
+    #     last_name = models.CharField(max_length=150)
+    age = models.IntegerField()
+    qr_code = models.CharField(max_length=20, null=True)
+
+
 #     is_superuser = models.BooleanField()
 #     is_staff = models.BooleanField()
 #     email = models.EmailField()
@@ -28,5 +31,5 @@ class Events(models.Model):
 
 class Tickets(models.Model):
     event_id = models.ForeignKey(Events, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(User, default = "" ,on_delete=models.CASCADE)
+    user_id = models.ForeignKey(CustomUser, default="", on_delete=models.CASCADE)
     is_inside = models.BooleanField()

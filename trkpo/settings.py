@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
 ]
 
-# AUTH_USER_MODEL = 'api.UserProfile'
+AUTH_USER_MODEL = 'api.CustomUser'
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
