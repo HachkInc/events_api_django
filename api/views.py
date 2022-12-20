@@ -2,13 +2,15 @@ from django.http import Http404, JsonResponse
 from rest_framework import viewsets, status
 from django_filters import rest_framework as filters
 from .serializers import EventsSerializer, TicketsSerializer
-from .models import Events, Tickets
+from .models import Events, Tickets, User
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from .serializers import UserSerializer, RegisterSerializer
 from rest_framework import generics
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 # from snippets.serializers import UserSerializer
+
 
 
 # class UserDetail(generics.RetrieveAPIView):
@@ -52,6 +54,7 @@ class RegisterUserAPIView(generics.CreateAPIView):
 
 
 class UserList(generics.ListAPIView):
+    User = get_user_model()
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -77,5 +80,6 @@ class TicketsViewSet(viewsets.ModelViewSet):
 
 
 class UserDetailAPIView(viewsets.ModelViewSet):
+    User = get_user_model()
     queryset = User.objects.all()
     serializer_class = UserSerializer
