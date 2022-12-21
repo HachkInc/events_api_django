@@ -1,5 +1,3 @@
-from requests import Response
-
 from rest_framework import viewsets, status
 from django_filters import rest_framework as filters
 from .serializers import EventsSerializer, TicketsSerializer, QrSerializer
@@ -7,7 +5,6 @@ from .models import Events, Tickets, User
 from rest_framework.permissions import AllowAny
 from .serializers import UserSerializer, RegisterSerializer
 from rest_framework import generics
-from django.contrib.auth import get_user_model
 
 
 class RegisterUserAPIView(generics.CreateAPIView):

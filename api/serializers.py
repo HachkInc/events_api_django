@@ -1,7 +1,6 @@
 from .models import Events, Tickets, User
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
-from django.contrib.auth.password_validation import validate_password
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -31,11 +30,11 @@ class QrSerializer(serializers.ModelSerializer):
 
 class RegisterSerializer(serializers.ModelSerializer):
     id = serializers.CharField(required = False)
-    first_name = serializers.CharField(required = False)
-    last_name = serializers.CharField(required = False)
-    age = serializers.IntegerField(required = False)
-    is_superuser = serializers.BooleanField(required=False)
-    is_staff = serializers.BooleanField(required= False)
+    # first_name = serializers.CharField(required = False)
+    # last_name = serializers.CharField(required = False)
+    # age = serializers.IntegerField(required = False)
+    # is_superuser = serializers.BooleanField(required=False)
+    # is_staff = serializers.BooleanField(required= False)
     email = serializers.EmailField(
         required=True,
         validators=[UniqueValidator(queryset=User.objects.all())]
@@ -44,8 +43,8 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'first_name', 'last_name', 'age', 'is_superuser', 'is_staff', 'email', 'password')
-
+        fields = ('id', 'email', 'password')
+        # fields = ('id', 'first_name', 'last_name', 'age', 'is_superuser', 'is_staff', 'email', 'password')
 
     def create(self, validated_data):
         user = User.objects.create(
