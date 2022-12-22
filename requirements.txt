@@ -12,7 +12,6 @@ django-rest-authtoken
 asgiref
 backports.zoneinfo
 gunicorn
-psycopg2-binary0
+psycopg2-binary
 setuptools
 wheel
-

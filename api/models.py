@@ -9,7 +9,7 @@ class User(AbstractUser):
     id = models.CharField(max_length=6, primary_key=True)
     first_name = models.CharField(max_length=150, null=True)
     last_name = models.CharField(max_length=150, null=True)
-    age = models.CharField(max_length=3, null=True)
+    age = models.IntegerField(null=True)
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     email = models.EmailField()
@@ -17,7 +17,7 @@ class User(AbstractUser):
 
 
 class Events(models.Model):
-    id = models.CharField(max_length=6, primary_key=True)
+    id = models.CharField(max_length=100, primary_key=True)
     title = models.CharField(max_length=150)
     login = models.CharField(max_length=20)
     password = models.CharField(max_length=40)
