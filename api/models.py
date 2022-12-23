@@ -6,7 +6,7 @@ from django.contrib.auth.models import (
 
 
 class User(AbstractUser):
-    id = models.CharField(max_length=6, primary_key=True)
+    id = models.CharField(max_length=100, primary_key=True)
     first_name = models.CharField(max_length=150, null=True)
     last_name = models.CharField(max_length=150, null=True)
     age = models.IntegerField(null=True)
@@ -29,7 +29,7 @@ class Events(models.Model):
 
 
 class Tickets(models.Model):
-    id = models.CharField(max_length=6, primary_key=True)
+    id = models.CharField(max_length=100, primary_key=True)
     event_id = models.ForeignKey(Events, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, default="", on_delete=models.CASCADE)
     is_inside = models.BooleanField()
