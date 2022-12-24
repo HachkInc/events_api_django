@@ -10,7 +10,6 @@ router.register(r'events', views.EventsViewSet)
 router.register(r'tickets', views.TicketsViewSet)
 router.register(r'users', views.UserDetailAPIView)
 
-
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
@@ -19,4 +18,5 @@ urlpatterns = [
     path('auth/login', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/refresh', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     path('qr/<pk>/', views.QrDetail.as_view()),
+    path('delete_by_id/', views.delete_by_ids),
 ]
