@@ -1,0 +1,17 @@
+asgiref
+cffi
+cryptography
+Django
+djangorestframework
+pycparser
+pytz
+sqlparse
+django-filter
+drf_yasg
+django-rest-authtoken
+asgiref
+backports.zoneinfo
+gunicorn
+psycopg2-binary
+setuptools
+wheel
