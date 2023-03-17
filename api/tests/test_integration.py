@@ -10,9 +10,15 @@ class IntegrationTest(TestCase):
             "email": "user@example.com",
             "password": "pass"
         }
+        self.data_auth =  {
+            "username": self.data_register['email'],
+            "password": self.data_register['password']
+        }
 
-    def test_success(self):
-        url_reg = 'auth/register'
+    def test_auth(self):
+        url_reg = '/api/v1/auth/register'
+        url_auth = '/api/v1/auth/login'
+
         response = self.client.post(url_reg, self.data_register)
-        print(response)
-        self.assertEqual(1, 1)
+        response_auth = self.client.post(url_auth, self.data_auth)
+        self.assertEqual(response_auth.status_code, status.HTTP_200_OK)
