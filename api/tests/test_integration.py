@@ -1,11 +1,14 @@
+
 import json
 from collections import OrderedDict
 from datetime import datetime
 
 import pytz
+
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
+
 
 from api.models import User, Events, Tickets
 
@@ -24,9 +27,11 @@ class IntegrationTest(TestCase):
         }
 
         self.data_auth = {
+
             "username": self.data_register['email'],
             "password": self.data_register['password']
         }
+
 
         self.data_register_false = {
             "id": "random_id123",
@@ -173,6 +178,3 @@ class IntegrationTest(TestCase):
         url = '/api/v1/tickets/'
         response = self.client.post(url, data=json.dumps(self.data_ticket_invalid), content_type="application/json")
         self.assertEqual(status.HTTP_400_BAD_REQUEST, response.status_code)
-
-    def test_fake(self):
-        self.assertEqual(1, 1)
