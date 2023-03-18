@@ -1,14 +1,11 @@
-
 import json
 from collections import OrderedDict
 from datetime import datetime
 
 import pytz
-
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
-
 
 from api.models import User, Events, Tickets
 
@@ -26,16 +23,16 @@ class IntegrationTest(TestCase):
             'password': 'test_password'
         }
 
-        self.data_auth = {
 
+
+        self.data_auth = {
             "username": self.data_register['email'],
             "password": self.data_register['password']
         }
 
-
         self.data_register_false = {
             "id": "random_id123",
-            'email': 'exist_str@mail.ru',
+            'email': 'user@example.com',
             "password": "somepassword"
         }
 
@@ -138,7 +135,7 @@ class IntegrationTest(TestCase):
 
     def test_fail_register(self):
         url_reg = '/api/v1/auth/register'
-        response_reg1 = self.client.post(url_reg, self.data_register2)
+        response_reg1 = self.client.post(url_reg, self.data_register) # здесь исправь новый словарь создай
 
         response_reg_fail = self.client.post(url_reg, self.data_register_false)
 
