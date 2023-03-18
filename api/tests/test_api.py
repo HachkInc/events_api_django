@@ -175,9 +175,7 @@ class UsersTestCase(APITestCase):
 
     def test_create(self):
         url = reverse('user-list')
-        print(url)
         response = self.client.post(url, self.data_to_create)
-        print(response)
         self.assertEqual(status.HTTP_201_CREATED, response.status_code)
         self.assertEqual(self.data_to_create, response.data)
 
